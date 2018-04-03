@@ -3,17 +3,17 @@ defmodule FileLines do
 
   def stream(path) do
     file_pid = open_file_form_path(path) 
-    do_stream(file_pid)
+    stream_create(file_pid)
   end
 
-  defp do_stream(pid) do
+  defp stream_create (pid) do
     text_chunk = read_text_chunk(pid)
     case text_chunk do
       :eof ->
         File.close(pid)
         []
       _ -> 
-        rest = fn -> do_stream(pid) end
+        rest = fn -> stream_create(pid) end
         construct(text_chunk, rest)
     end
   end

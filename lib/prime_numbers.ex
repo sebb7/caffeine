@@ -17,7 +17,11 @@ defmodule PrimeNumbers do
   end
 
   defp is_prime_number(n) do
-    (2..n |> Enum.filter(fn a -> rem(n, a) == 0 end) |> length()) == 1
+    number_of_dividers = 
+      2..n
+      |> Enum.filter(fn a -> rem(n, a) == 0 end)
+      |> length()
+    number_of_dividers == 1
   end
 
   defp increment(n) do
