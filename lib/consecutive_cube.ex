@@ -6,8 +6,7 @@ defmodule CubeNumbers do
   end
 
   defp stream(n) do
-    new_n = increment(n)
-    rest = fn -> stream(new_n) end
+    rest = fn -> stream(increment(n)) end
     construct(cube(n), rest)
   end
 
